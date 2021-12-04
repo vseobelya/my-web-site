@@ -1,6 +1,5 @@
 import { Component} from '@angular/core';
-import {Good} from '../shared/tovar';
-import {test} from '../shared/data';
+import {TovarServiceService} from '../tovar-service.service';
 
 
 @Component({
@@ -10,17 +9,24 @@ import {test} from '../shared/data';
 })
 export class MyFormComponent{
 
-  constructor() { }
+  newgood_name: string = '';
+  newgood_price: number = 0;
+
+  constructor(private tovar_service: TovarServiceService ) { }
 
   ngOnInit(): void {
 
   }
-  newgood_name: string = '';
-  newgood_price: number = 0;
 
-  addnewgood(){
-    test.push(new Good(this.newgood_name, this.newgood_price, 0));
+  addGood(newgood_name: string, newgood_price: number){
+    this.tovar_service.addnewgood(newgood_name, newgood_price);
     this.newgood_name = '';
     this.newgood_price = 0;
   }
+
+  // addnewgood(){
+  //   test.push(new Good(this.newgood_name, this.newgood_price, 0));
+  //   this.newgood_name = '';
+  //   this.newgood_price = 0;
+  // }
 }

@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter} from '@angular/core';
+import { Component, Input} from '@angular/core';
 import {test} from "../shared/data"
 import {Good} from "../shared/tovar"
+import {TovarServiceService} from '../tovar-service.service';
 
 @Component({
   selector: 'app-item-tovar',
@@ -8,25 +9,21 @@ import {Good} from "../shared/tovar"
   styleUrls: ['./item-tovar.component.css']
 })
 export class ItemTovarComponent{
-  @Input() item:any;
+  @Input() item: any;
   @Input() i:any;
 
-  @Output() del_good = new EventEmitter<Good>();
+  constructor(private tovar_service: TovarServiceService ) { }
 
-  amountadd(){
-
-    let index = test.indexOf(this.item);
-    test[index].amount++;
+  amountIncrease(){
+    this.tovar_service.amountadd(this.item);
   }
 
-  amountsubs(){
-    let index = test.indexOf(this.item);
-    if(test[index].amount > 0)
-        test[index].amount--;
+  amountDecrease(){
+    this.tovar_service.amountsubs(this.item);
   }
 
-  deletegood(del_good: any){
-    this.del_good.emit(del_good);
+  delGood(){
+    this.tovar_service.deletegood(this.item);
   }
 
 }
