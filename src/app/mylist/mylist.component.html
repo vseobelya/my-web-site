@@ -9,9 +9,9 @@
     <td width="7%"></td>
   </tr>
 
-  <tr *ngFor="let item of test; let i=index;">
+  <tr *ngFor="let item of NewTovar; let i=index;">
     <td width=100% colspan="7">
-        <app-item-tovar [item]="item" (del_good)="deletegood($event)"></app-item-tovar>
+      <app-item-tovar [item]="item"></app-item-tovar>
     </td>
   </tr>
 </table>

@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { NgModule } from '@angular/core';
-import {test} from "../shared/data"
-import {Good} from "../shared/tovar"
+import {Good} from '../shared/tovar';
+import {TovarServiceService} from '../tovar-service.service';
 
 @Component({
   selector: 'mylist-root',
@@ -9,12 +9,13 @@ import {Good} from "../shared/tovar"
   styleUrls: ['./mylist.component.css']
 })
 
-export class MyListComponent{
-  @Input() test:any;
+export class MyListComponent implements OnInit{
+  NewTovar: Good[];
+  constructor(private tovar_service: TovarServiceService){
+    this.NewTovar = [];
+  }
 
-  deletegood(del_good: any){
-    let index = test.indexOf(del_good);
-    if(index > -1)
-        test.splice(index, 1);
+  ngOnInit(){
+    this.NewTovar = this.tovar_service.get_tovar();
   }
 }

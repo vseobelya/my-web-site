@@ -1,6 +1,4 @@
-import { Component, OnInit} from '@angular/core';
-import {Good} from '../shared/tovar';
-import {test} from '../shared/data';
+import { Component} from '@angular/core';
 import {TovarServiceService} from '../tovar-service.service';
 
 
@@ -21,9 +19,9 @@ export class MyFormComponent{
   }
 
   addGood(newgood_name: string, newgood_price: number){
-    this.tovar_service.addnewgood(newgood_name, newgood_price)
+    this.tovar_service.addnewgood(newgood_name, newgood_price);
     this.newgood_name = '';
-      this.newgood_price = 0;
+    this.newgood_price = 0;
   }
 
   // addnewgood(){
